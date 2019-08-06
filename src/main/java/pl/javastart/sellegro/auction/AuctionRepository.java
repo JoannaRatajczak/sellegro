@@ -24,10 +24,16 @@ public interface AuctionRepository extends JpaRepository<Auction, Long>, PagingA
 
     List<Auction> findByOrderByPrice();
 
-    @Query(value = "SELECT * FROM auction WHERE (:make% IS NULL OR car_make =:make% )" +
-            "AND (:model% IS NULL OR car_model = :model% ) " +
-            "AND (:color% IS NULL OR color = :color% )", nativeQuery = true)
-    List<Auction> selectByParameters(@Param("make") String make, @Param("model") String model, @Param("color") String color);
+//    @Query("SELECT a FROM Auction a WHERE (?1 IS NULL OR a.carMake =?1 ) AND (?2 IS NULL OR a.carModel = ?2) AND (?3 IS NULL OR a.color = ?3)")
+//    List<Auction> selectByParameters(String carMake, String carModel, String color);
+
+//    @Query("SELECT a FROM Auction a WHERE (':carMake' IS NULL OR a.carMake =':carMake' ) AND (':carModel' IS NULL OR a.carModel = ':carModel') AND (':color' IS NULL OR a.color = ':color')")
+//    List<Auction> selectByParameters(@Param("carMake") String carMake, @Param("carModel") String carModel, @Param("color") String color);
+//
+    @Query(value = "SELECT * FROM auction WHERE (:carMake IS NULL OR car_make =:carMake )" +
+            "AND (:carModel IS NULL OR car_model = :carModel ) " +
+            "AND (:color IS NULL OR color = :color)", nativeQuery = true)
+    List<Auction> selectByParameters(@Param("carMake") String carMake, @Param("carModel") String carModel, @Param("color") String color);
 
 
 }

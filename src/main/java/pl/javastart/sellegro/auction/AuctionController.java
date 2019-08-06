@@ -26,7 +26,7 @@ public class AuctionController {
 
     @GetMapping("/auctions")
     public String auctions(Model model,
-                           @RequestParam(required = false, defaultValue = "ALL") String sort,
+                           @RequestParam(required = false, name = "sort") String sort,
                            @RequestParam(required = false, name = "carMake") String carMake,
                            @RequestParam(required = false, name = "carModel") String carModel,
                            @RequestParam(required = false, name = "color") String color,
@@ -39,11 +39,11 @@ public class AuctionController {
         List<Auction> auctions = new ArrayList<>();
 
         if (sort != null) {
+            System.out.println("1");
             switch (sort) {
-                case "ALL":
+                case "":
                     auctions = auctionRepository.findAll();
                     break;
-
                 case "carMake":
                     auctions = auctionRepository.findByOrderByCarMake();
                     break;
@@ -64,9 +64,14 @@ public class AuctionController {
                     auctions = auctionRepository.findByOrderByEndDate();
                     break;
             }
-        } else auctions = auctionRepository.selectByParameters(carMake, carModel, color);
+        } else {
+            auctions = auctionRepository.selectByParameters(carMake, carModel, color);
+            System.out.println("2");
+            System.out.println(carMake);
+            System.out.println(carModel);
+            System.out.println(color);
 
-
+        }
 
 
         model.addAttribute("cars", auctions);
