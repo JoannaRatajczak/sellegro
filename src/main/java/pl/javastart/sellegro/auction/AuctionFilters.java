@@ -1,26 +1,17 @@
 package pl.javastart.sellegro.auction;
 
-public class AuctionFilters {
+public class AuctionFilters { //enum? switch
 
-    private String title;
-    private String carMaker;
+    private String carMake;
     private String carModel;
     private String color;
 
-    public String getTitle() {
-        return title;
+    public String getCarMake() {
+        return carMake;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getCarMaker() {
-        return carMaker;
-    }
-
-    public void setCarMaker(String carMaker) {
-        this.carMaker = carMaker;
+    public void setCarMake(String carMaker) {
+        this.carMake = carMake;
     }
 
     public String getCarModel() {
