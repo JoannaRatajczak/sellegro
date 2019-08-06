@@ -31,10 +31,7 @@ public class AuctionController {
                            @RequestParam(required = false, name = "carModel") String carModel,
                            @RequestParam(required = false, name = "color") String color,
                            AuctionFilters auctionFilters) {
-
-//        Pageable pageable0 = PageRequest.of(0, 50);
-//        Pageable pageable1 = PageRequest.of(1, 100);
-//        Pageable pageable2 = PageRequest.of(2, 150);
+        
 
         List<Auction> auctions = new ArrayList<>();
 

@@ -24,6 +24,9 @@ public interface AuctionRepository extends JpaRepository<Auction, Long>, PagingA
 
     List<Auction> findByOrderByPrice();
 
+    @Query(value = "SELECT * FROM auction order by price desc limit 0, 3", nativeQuery = true)
+    List<Auction> find3Expensive();
+
 //    @Query("SELECT a FROM Auction a WHERE (?1 IS NULL OR a.carMake =?1 ) AND (?2 IS NULL OR a.carModel = ?2) AND (?3 IS NULL OR a.color = ?3)")
 //    List<Auction> selectByParameters(String carMake, String carModel, String color);
 
